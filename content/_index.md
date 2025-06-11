@@ -2,6 +2,8 @@
 title = "Home"
 +++
 
+<span id="photo">![Photo of Corey](https://www.gravatar.com/avatar/d775128f57dc1b7e32ca11cafef777ef?s=160)</span>
+
 ## Hello, I'm Corey
 
 I'm a software engineer based in 🏡 Portland, OR. I work with Haskell, TypeScript, and [Nix][nix] to build human-centered experiences for the web.
