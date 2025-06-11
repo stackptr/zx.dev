@@ -29,6 +29,16 @@
       perSystem = {pkgs, ...}: {
         devShells.default = pkgs.mkShell {packages = [pkgs.just pkgs.zola];};
         formatter = pkgs.alejandra;
+        packages.default = pkgs.stdenv.mkDerivation {
+          name = "zx.dev";
+          src = ./.;
+          buildInputs = [pkgs.zola];
+          buildPhase = "zola build";
+          installPhase = ''
+            mkdir -p $out
+            cp -r public/* $out/
+          '';
+        };
       };
     });
 }
