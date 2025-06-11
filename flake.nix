@@ -11,7 +11,11 @@
     };
   };
 
-  outputs = inputs @ {flake-parts, anemone, ...}:
+  outputs = inputs @ {
+    flake-parts,
+    anemone,
+    ...
+  }:
     flake-parts.lib.mkFlake {inherit inputs;} (top @ {
       self,
       config,
@@ -44,20 +48,7 @@
       }: {
         devShells.default = pkgs.mkShell {packages = [pkgs.just pkgs.zola];};
         formatter = pkgs.alejandra;
-        packages.zx-dev = pkgs.stdenv.mkDerivation {
-          name = "zx.dev";
-          src = ./.;
-          buildInputs = [pkgs.zola];
-          buildPhase = "zola build";
-          installPhase = ''
-            mkdir -p $out
-            cp -r dist/* $out/
-          '';
-          postPatch = ''
-            mkdir -p themes/anemone
-            cp -r ${anemone}/. themes/anemone/
-          '';
-        };
+        packages.zx-dev = pkgs.callPackage ./package.nix {inherit anemone;};
         packages.default = self'.packages.zx-dev;
       };
     });
