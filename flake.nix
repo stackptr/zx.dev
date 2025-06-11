@@ -48,7 +48,7 @@
       }: {
         devShells.default = pkgs.mkShell {packages = [pkgs.just pkgs.zola];};
         formatter = pkgs.alejandra;
-        packages.zx-dev = pkgs.callPackage ./package.nix {inherit anemone;};
+        packages.zx-dev = pkgs.callPackage ./package.nix {inherit self anemone;};
         packages.default = self'.packages.zx-dev;
       };
     });
