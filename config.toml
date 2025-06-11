@@ -1,6 +1,8 @@
 # The URL the site will be built for
 base_url = "https://zx.dev"
 
+title = "zx.dev"
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
 
