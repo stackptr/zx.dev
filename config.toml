@@ -20,3 +20,6 @@ highlight_code = true
 
 [extra]
 header_nav = []
+
+# Set current rev for "View source" link; should be added during nix build
+#git_rev = "..."

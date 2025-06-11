@@ -1,5 +1,10 @@
+{% if 'git_rev' in config.extra %}
+{% set source_link = "https://github.com/stackptr/zx.dev/tree/" ~ config.extra.git_rev %}
+{% else %}
+{% set source_link = "https://github.com/stackptr/zx.dev" %}
+{% endif %}
 <hr>
 <div id="footer-container">
 	<p>Made using <a target="_blank" rel="noopener noreferrer" href="https://github.com/Speyll/anemone">anemone</a> Zola theme</p>
-	<p><a href="https://github.com/stackptr/zx.dev">View source</a></p>
+	<p><a href="{{source_link}}">View source</a></p>
 </div>
