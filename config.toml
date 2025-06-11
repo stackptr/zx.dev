@@ -11,6 +11,8 @@ build_search_index = true
 
 output_dir = "dist"
 
+theme = "anemone"
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
