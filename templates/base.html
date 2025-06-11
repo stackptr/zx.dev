@@ -14,6 +14,30 @@
 </head>
 
 <body>
+  {% set current_lang = config.default_language %}
+  {% if page %}
+  {% set current_lang = page.lang %}
+  {% elif section %}
+  {% set current_lang = section.lang %}
+  {% endif %}
+  <nav id="nav-bar">
+      {% for nav_item in config.extra.header_nav %}
+      <a href="{{ nav_item.url }}" class="{% if current_url is defined and nav_item.url == current_url %}active{% endif %}">
+          {% set language_key = 'name_' ~ current_lang %}
+          {{ nav_item[language_key] }}
+      </a>
+      {% endfor %}
+  
+      <div class="theme-toggle" id="theme-toggle" role="button" tabindex="0" aria-label="Toggle theme"
+          data-icon-base="{{ get_url(path='icons.svg') }}"
+          data-icon-dark="#darkMode"
+          data-icon-light="#lightMode"
+          data-sound-src="{{ get_url(path='click.ogg') }}">
+          <svg class="icon">
+              <use id="theme-icon"></use>
+          </svg>
+      </div>
+  </nav>
   <main>
 	  {% block content %}{% endblock %}
   </main>
@@ -21,6 +45,8 @@
   <footer>
 	  {% include "footer.html" %}
   </footer>
+  
+  <script src="{{ get_url(path='js/script.js') }}" defer></script>
 </body>
 
 </html>
