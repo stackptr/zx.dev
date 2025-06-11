@@ -36,7 +36,7 @@
           buildPhase = "zola build";
           installPhase = ''
             mkdir -p $out
-            cp -r public/* $out/
+            cp -r dist/* $out/
           '';
         };
       };
