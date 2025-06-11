@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "anemone": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1749164920,
+        "narHash": "sha256-XwggfJBnk9bxOVe6EIeerjebsqDXpqeAJ8umq5GPbIg=",
+        "owner": "Speyll",
+        "repo": "anemone",
+        "rev": "0fa77c2eeccd096f6def3b540a9417a1b54fdd5f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Speyll",
+        "repo": "anemone",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -38,6 +54,7 @@
     },
     "root": {
       "inputs": {
+        "anemone": "anemone",
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs"
       }

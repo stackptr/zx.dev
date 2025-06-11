@@ -5,9 +5,13 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    anemone = {
+      url = "github:Speyll/anemone";
+      flake = false;
+    };
   };
 
-  outputs = inputs @ {flake-parts, ...}:
+  outputs = inputs @ {flake-parts, anemone, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} (top @ {
       self,
       config,
@@ -48,6 +52,10 @@
           installPhase = ''
             mkdir -p $out
             cp -r dist/* $out/
+          '';
+          postPatch = ''
+            mkdir -p themes/anemone
+            cp -r ${anemone}/. themes/anemone/
           '';
         };
         packages.default = self'.packages.zx-dev;
