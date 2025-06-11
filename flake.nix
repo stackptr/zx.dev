@@ -26,10 +26,14 @@
         };
       };
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
-      perSystem = {pkgs, ...}: {
+      perSystem = {
+        pkgs,
+        self',
+        ...
+      }: {
         devShells.default = pkgs.mkShell {packages = [pkgs.just pkgs.zola];};
         formatter = pkgs.alejandra;
-        packages.default = pkgs.stdenv.mkDerivation {
+        packages.zx-dev = pkgs.stdenv.mkDerivation {
           name = "zx.dev";
           src = ./.;
           buildInputs = [pkgs.zola];
@@ -39,6 +43,7 @@
             cp -r dist/* $out/
           '';
         };
+        packages.default = self'.packages.zx-dev;
       };
     });
 }
