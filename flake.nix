@@ -27,7 +27,7 @@
       };
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       perSystem = {pkgs, ...}: {
-        devShells.default = pkgs.mkShell {packages = [pkgs.just];};
+        devShells.default = pkgs.mkShell {packages = [pkgs.just pkgs.zola];};
         formatter = pkgs.alejandra;
       };
     });
