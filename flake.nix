@@ -9,6 +9,7 @@
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} (top @ {
+      self,
       config,
       withSystem,
       moduleWithSystem,
@@ -24,6 +25,12 @@
             "stackptr.cachix.org-1:5e2q7OxdRdAtvRmHTeogpgJKzQhbvFqNMmCMw71opZA="
           ];
         };
+        nixosModules.zx-dev = moduleWithSystem (
+          perSystem @ {config}: (import ./modules/zx-dev.nix {
+            zx-dev = perSystem.config.packages.zx-dev;
+          })
+        );
+        nixosModules.default = self.nixosModules.zx-dev;
       };
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       perSystem = {
