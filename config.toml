@@ -21,7 +21,8 @@ highlight_code = true
 [extra]
 header_nav = [
   { url = "/", name_en = "/about/" },
-  { url = "/tech", name_en = "/tech/" }
+  { url = "/tech", name_en = "/tech/" },
+  { url = "/blog", name_en = "/blog/" }
 ]
 
 # Set current rev for "View source" link; should be added during nix build
