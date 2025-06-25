@@ -19,7 +19,10 @@ theme = "anemone"
 highlight_code = true
 
 [extra]
-header_nav = []
+header_nav = [
+  { url = "/", name_en = "/about/" },
+  { url = "/tech", name_en = "/tech/" }
+]
 
 # Set current rev for "View source" link; should be added during nix build
 #git_rev = "..."
