@@ -1,0 +1,22 @@
+# humanstxt.org/
+
+# HUMAN
+
+    Corey Johns (@stackptr)
+
+# TECHNOLOGY
+
+  - Zola
+  - NixOS
+  - Markdown
+
+# VIEW SOURCE
+
+    https://github.com/stackptr/zx.dev
+
+# LICENSE
+
+    All content is licensed under CC-BY-4.0, an
+    open & permissive Creative Commons license:
+    
+    https://creativecommons.org/licenses/by/4.0/deed.en
