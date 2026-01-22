@@ -13,10 +13,6 @@ output_dir = "dist"
 
 theme = "anemone"
 
-[markdown.highlighting]
-theme = "gruvbox-dark"
-error_on_missing_language = true
-
 [extra]
 header_nav = [
   { url = "/", name_en = "/about/" },
