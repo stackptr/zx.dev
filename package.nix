@@ -1,6 +1,7 @@
 {
   self,
   stdenv,
+  cacert,
   pkgs,
   anemone,
 }: let
@@ -19,6 +20,7 @@ in
     name = "zx.dev";
     src = ./.;
     buildInputs = [pkgs.zola];
+    SSL_CERT_FILE = "${cacert}/etc/ssl/certs/ca-bundle.crt";
     buildPhase = "zola build";
     installPhase = ''
       mkdir -p $out
