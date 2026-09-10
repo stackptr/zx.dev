@@ -6,7 +6,9 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     anemone = {
-      url = "github:Speyll/anemone";
+      # Pinned to PinkNoize's zola-0.23/Tera-v2 migration until it's merged
+      # upstream: https://github.com/Speyll/anemone/pull/41
+      url = "github:PinkNoize/anemone/8c1bae458ae24ac5fe0ff14706a463b51bf429e5";
       flake = false;
     };
   };
@@ -40,7 +42,8 @@
         );
         nixosModules.default = self.nixosModules.zx-dev;
       };
-      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
+      # x86_64-darwin dropped from nixpkgs 26.11; drop it here too.
+      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
       perSystem = {
         pkgs,
         self',
