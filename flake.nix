@@ -29,10 +29,10 @@
         nixConfig = {
           experimental-features = ["nix-command" "flakes"];
           extra-substituters = [
-            "https://stackptr.cachix.org"
+            "https://cache.zx.dev/main"
           ];
           extra-trusted-public-keys = [
-            "stackptr.cachix.org-1:5e2q7OxdRdAtvRmHTeogpgJKzQhbvFqNMmCMw71opZA="
+            "main:mu0jkxdJTGWC3djDSEQb3rvZgqlhA8WVMulcTo5IW6c="
           ];
         };
         nixosModules.zx-dev = moduleWithSystem (
