@@ -5,17 +5,39 @@ on:
   push:
     branches: main
 
+permissions:
+  contents: read
+
 jobs:
+  # The check stackptr/ops's "Require CI" requires. No secrets: PR builds,
+  # agents' included, read the stackptr Cachix cache anonymously.
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: cachix/install-nix-action@v31
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
       with:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: cachix/cachix-action@v16
+    - uses: cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1 # v16
+      with:
+        name: stackptr
+    - run: nix flake check
+    - run: nix build
+
+  # Pushes main's build to the cache. CACHIX_AUTH_TOKEN is in the main-only
+  # `cachix` environment, so branch code never sees it.
+  cache:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    environment: cachix
+    steps:
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
+      with:
+        github_access_token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1 # v16
       with:
         name: stackptr
         authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-    - run: nix flake check
     - run: nix build
